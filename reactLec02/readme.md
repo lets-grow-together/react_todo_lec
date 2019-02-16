@@ -459,7 +459,7 @@ ECMAScript 6에서는 콜론과 function 키워드가 제거되어 문법이 좀
 
 ```js
 var person = {
-    name: 'Chris,
+    name: 'Chris',
     sayName: function () {
         console.log(this.name);
     }
@@ -912,8 +912,8 @@ class Square extends Rectangle {
 ### 모듈구현 - IIFE
 
 ```js
+// math.js
 // 모듈 시작
-
 (function(window) {
 	var sum = function(x, y) {
 		return x + y;
@@ -937,12 +937,316 @@ class Square extends Rectangle {
 
 // 모듈 끝
 
+// link math.js script
 console.log(math.findSum(1, 2));	// 3
 console.log(math.findSub(1, 2));	// -1
 ```
 
-### 모듈구현 - Require JS
+### 모듈구현 - AMD (Require JS)
+
+```js
+// math.js
+// math 객체 export
+define(function () {
+  var sum = function(x, y) {
+		return x + y;
+	}
+
+	var sub = function(x, y) {
+		return x - y;
+	}
+
+	var math = {
+		findSum: function(a, b) {
+			return sum(a, b);
+		},
+		findSub: function(a, b) {
+			return sub(a, b);
+		}
+	}
+  
+  return math;
+});
+
+// index.js
+// math 객체 import
+require(['math'], function (math){
+
+  console.log(math.findSum(1, 2));  // 3
+  console.log(math.findSub(1, 2));  // -1
+});
+```
 
 ### 모듈구현 - Common JS (node)
 
-### 모듈구현 - ES6 import / export
+```js
+// math.js
+// 모듈 생성, export
+var sum = function (x, y) {
+  return x + y;
+}
+
+var sub = function (x, y) {
+  return x - y;
+}
+
+var math = {
+  findSum: function (a, b) {
+    return sum(a, b);
+  },
+  findSub: function (a, b) {
+    return sub(a, b);
+  }
+}
+
+exports.math = math;
+
+// index.js
+// 모듈 import
+var math = require('./math').math;
+
+console.log(math.findSum(1, 2));  // 3
+console.log(math.findSub(1, 2));  // -1
+```
+
+### 모듈구현 - UMD
+
+```js
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.math = factory();
+  }
+} (this, function () {
+  // 모듈 정의
+  var sum = function (x, y) {
+    return x + y;
+  }
+  var sub = function (x, y) {
+    return x - y;
+  }
+  var math = {
+    findSum: function (a, b) {
+      return sum(a, b);
+    },
+    findSub: function (a, b) {
+      return sub(a, b);
+    }
+  }
+  return math;
+}));
+```
+
+*****
+
+## ES6 module import / export
+
+### export 기본
+
+변수나 함수, 클래스 선언 앞에 `export`를 사용하여 익스포트 시킬 수 있다.
+
+```js
+// 데이터 익스포트
+export var color = 'red';
+export let name = 'Nicholas';
+export const magicNumber = 7;
+
+// 함수 익스포트
+export function sum(num1, num2) {
+    return num1 + num2;
+}
+
+// 클래스 익스포트
+export class Rectangle {
+    constructor(length, width) {
+        this.length = length;
+        this.width = width;
+    }
+}
+
+// 이 함수는 모듈에 비공개
+function subtract(num1, num2) {
+    return num1 - num2;
+}
+
+// 함수 정의
+function multiply(num1, num2) {
+    return num1 * num2;
+}
+
+// 위에서 정의한 함수를 익스포트
+export { multiply };
+```
+
+### import 기본
+
+익스포트한 모듈이 있을 때, `import` 키워드를 사용하여 다른 모듈에 접근할 수 있다. 
+
+```js
+import { identifier1, identifier2 } from './exmaple.js';
+```
+
+모듈로부터 바인딩을 임포트할 때, 바인딩은 const를 사용하여 정의한 것처럼 동작한다.
+
+> 임포트할 바인딩의 리스트는 구조분해된 객체와 유사해보이지만, 구조분해된 객체가 아니다.
+
+```js
+// 단 하나의 식별자 임포트
+import { sum } from './example.js';
+
+console.log(sum(1, 2));         // 3
+
+sum = 1;                        // 에러 발생
+```
+
+```js
+// 여러 개 임포트
+import { sum, multiply, magicNumber } from './example.js';
+console.log(sum(1, magicNumber);        // 8
+console.log(multiply(1, 2));            // 2
+```
+
+```js
+// 모두 임포트
+import * as example from './example.js';
+
+console.log(example.sum(1, example.magicNumber));   // 8
+console.log(example.multiply(1, 2);                 // 2
+```
+
+### import/export에 새로운 이름 사용하기
+
+```js
+function sum(num1, num2) {
+    return num1 + num2;
+}
+
+export { sum as add };
+```
+
+```js
+import { add } from './example.js';
+```
+
+```js
+import { add as sum } from './example.js';
+console.log(typeof add);        // undefined
+console.log(sum(1, 2));         // 3
+```
+
+### 모듈의 기본값 default
+
+모듈 문법은 모듈에서 기본 값을 익스포트하고 임포트하도록 최적화되어 있는데, 그 이유는 이 패턴이 CommonJS(브라우저가 아닌 곳에서 자바스크립트를 사용하기 위한 또 다른 명세) 같은 다른 모듈시스템에서도 매우 일반적이기 때문이다. 모듈의 기본 값은 `default` 키워드로 지정된 변수나 함수, 클래스이고, 모듈마다 하나의 익스포트 기본 값을 설정할 수 있다. `default` 키워드를 사용하여 여러 개를 익스포트하면 에러가 발생한다.
+
+```js
+export default function(num1, num2) {
+    return num1 + num2;
+}
+```
+
+`default` 키워드는 이것이 익스포트 기본 값임을 나타낸다. 모듈 자체가 함수를 나타내기 때문에 이름은 필요하지 않다.
+
+```js
+// 기본 값을 명시할 수도 있다.
+function sum(num1, num2) {
+    return num1 + num2;
+}
+
+export default sum;
+```
+
+```js
+function sum(num1, num2) {
+    return num1 + num2;
+}
+
+export { sum as default }
+```
+
+```js
+// 기본 값 임포트
+import sum from './example.js';
+
+console.log(sum(1, 2));             // 3
+```
+
+기본 값과 다른 바인딩을 익스포트
+
+```js
+export let color = 'red';
+
+export default function(num1, num2) {
+    return num1 + num2;
+}
+```
+
+```js
+import sum, { color } from './example.js';
+
+console.log(sum(1, 2));         // 3
+console.log(color);             // red
+```
+
+```js
+import { default as sum, color } from 'example';
+
+console.log(sum(1, 2));         // 3
+console.log(color);             // red
+```
+
+바인딩을 다시 익스포트하기
+
+```js
+import { sum } from './example.js';
+export { sum };
+```
+
+```js
+export { sum } from './example.js';
+```
+
+```js
+export { sum as add } from './example.js';
+```
+
+*****
+
+### CounterApp 마무리
+
+- color state 추가
+- onSetColor prop / handleSetColor 추가
+- getRandomColor 추가
+
+```js
+// CounterApp/index.js
+
+// ...
+function getRandomColor() {
+  const colors = [
+    '#495057',
+    '#f03e3e',
+    '#d6336c',
+    '#ae3ec9',
+    '#7048e8',
+    '#4263eb',
+    '#1c7cdb',
+    '#1098ad',
+    '#0ca678',
+    '#37b24d',
+    '#74b816',
+    '#f59f00',
+    '#f76707'
+  ];
+
+  const random = Math.floor(Math.random() * 13);
+
+  return colors[random];
+}
+// ...
+```
+
+- Counter 컴포넌트 수정
+- getRandomColor 함수 모듈로 분리
