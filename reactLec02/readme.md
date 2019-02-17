@@ -36,6 +36,8 @@ function getValue(condition) {
     }
     // value는 여기서 undefined로 존재한다.
 }
+
+getValue(false);
 ```
 
 ### let 선언
@@ -52,6 +54,8 @@ function getValue(condition) {
     }
     // value는 여기서 존재하지 않음
 }
+
+getValue(false);
 ```
 
 변수 value는 `var` 대신 `let`으로 선언했기 때문에, value의 선언이 함수 맨 위로 호이스팅되지 않고, `if` 블록 바깥에서 접근할 수 없다. 만약 condition의 값이 `false`이면 value는 선언되거나 초기화되지 않는다.
@@ -322,7 +326,7 @@ const origin = [1, 2];
 const copied = [...origin];
 // const [...copied] = origin
 
-originalArray.push(3);
+origin.push(3);
 console.log(origin);
 console.log(copied);
 ```
@@ -703,6 +707,59 @@ console.log(firstColor);            // red
 console.log(restColors.length);     // 2
 console.log(restColors[0]);         // green
 console.log(restColors[1]);         // blue
+```
+
+### 구조분해된 매개변수
+
+함수에 인자를 전달하는 경우에도 구조분해를 유용하게 사용할 수 있다.
+
+```js
+// ES5
+// 부가적인 매개변수를 표현하는 options의 프로퍼티
+function secCookie(name, value, options) {
+    options = options || {};
+    
+    let secure = options.secure;
+    let path = options.path;
+    let domain = options.domain;
+    let expires = options.expire;
+    
+    // cookie를 설정하는 코드
+}
+
+// 세 번재 인자는 options에 전달됨
+setCookie('type', 'js', {
+    secure: true,
+    expires: 60000
+});
+```
+
+예제 함수에서 name, value는 필수지만, secure와 path, domian, expires는 선택적이다. 선택적인 인자는 우선순위가 없으므로 매개변수를 나열하는 것 보다 프로퍼티로 구성된 options 객체를 두는 것이 효율적이다. 이런 접근법은 함수 정의를 통해서 어떤 값이 입력될지 예상할 수 없으므로 함수 본문을 살펴봐야 한다.
+
+구조분해된 매개변수를 사용하면 함수에 어떤 값이 전달될지 예상할 수 있다.
+
+```js
+// ES6
+function setCookie(name, value, { secure, path, domain, expires } = {}) {
+    // cookie를 설정하는 코드
+}
+
+setCookie('type', 'js', {
+    secure: true,
+    expires: 60000
+});
+```
+
+```js
+// 구조분해된 매개변수의 기본값
+function setCookie(name, value, {
+    secure = false,
+    path = '/',
+    domain = 'example.com',
+    expires = new Date(Date.now() + 360000000)
+} = {}) {
+    // ...
+}
 ```
 
 *****
