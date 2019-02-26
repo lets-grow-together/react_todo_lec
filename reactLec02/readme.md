@@ -957,7 +957,7 @@ class Square extends Rectangle {
 *****
 
 
-## 모듈 (작성 중)
+## 모듈
 
 ### 모듈화 장점
 
