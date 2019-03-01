@@ -4,7 +4,7 @@
 
 2. [ECMA Script 2015 (ES6) 기초](./reactLec02/readme.md)
 
-3. React JS 기초 1
+3. [React JS 기초 1](./reactLec03/readme.md)
 
 4. React JS 기초 2
 
