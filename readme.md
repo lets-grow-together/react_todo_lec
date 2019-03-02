@@ -6,6 +6,6 @@
 
 3. [React JS 기초 1](./reactLec03/readme.md)
 
-4. React JS 기초 2
+4. [React JS 기초 2](./reactLec04/readme.md)
 
 5. TodoList 만들기
