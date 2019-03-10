@@ -68,7 +68,7 @@ create-react-app std_react_playground
 git commit -m 'project start'
 ```
 
-### CounterApp 생성
+**CounterApp Component(실습)**
 
 - `src/Apps/CounterApp` 폴더 생성
 - `src/Apps/CounterApp/index.js` 파일 생성
