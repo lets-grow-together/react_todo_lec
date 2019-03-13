@@ -1,7 +1,6 @@
 # 04 React JS 기초 4 (작성 중)
 
 - ref: DOM 참조하기
-- React스럽게 생각하기
 - 컴포넌트 스타일링
 
 *****
@@ -29,7 +28,7 @@
 
 이렇게 하면 컴포넌트가 마운팅 될 때 `this.input`은 `input` 요소의 DOM을 가리킨다.
 
-### 부모 컴포넌트에 DOM ref 노출하기
+### DOM에 ref 달기 / 부모 컴포넌트에 DOM ref 노출하기
 
 부모 컴포넌트에서 자식의 DOM 노드에 접근해야할 때가 있습니다. 캡슐화를 깨는 방식이기 때문에 추천하지 않지만 포커스를 발동시키거나 자식 DOM 노드의 포지션이나 사이즈를 계산할 때 유용하게 쓰인다.
 
@@ -45,6 +44,6 @@
 />
 ```
 
-이렇게 하면 MyComponent 내부의 메서드 및 멤버 변수에도 접근할 수 있습니다. 즉, 내부의 ref에도 접근할 수 있습니다(예: `myComponent.handleClick, myComponent.input` 등).
+이렇게 하면 MyComponent 내부의 메서드 및 멤버 변수에도 접근할 수 있다. 즉, 내부의 ref에도 접근할 수 있다(예: `myComponent.handleClick, myComponent.input` 등).
 
 **ComponentRef Component(실습)**
