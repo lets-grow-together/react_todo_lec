@@ -1,4 +1,4 @@
-# 04 React JS 기초 4 (작성 중)
+# 04 React JS 기초 4
 
 - state 끌어올리기
 - ref: DOM 참조하기
@@ -58,3 +58,234 @@ state를 올리는 것은 버그를 찾고 격리하는 작업이 줄어든다. 
 이렇게 하면 MyComponent 내부의 메서드 및 멤버 변수에도 접근할 수 있다. 즉, 내부의 ref에도 접근할 수 있다(예: `myComponent.handleClick, myComponent.input` 등).
 
 **ComponentRef Component(실습)**
+
+*****
+
+## 컴포넌트 스타일링
+
+### 인라인 스타일링
+
+```jsx
+// Result style: '10px'
+<div style={{ height: 10 }}>
+  Hello World!
+</div>
+
+// Result style: '10%'
+<div style={{ height: '10%' }}>
+  Hello World!
+</div>
+```
+
+```jsx
+function HelloWorldComponent(props) {
+    const divStyle = {
+        color: 'blue',
+        backgroundImage: 'url(' + props.imgUrl + ')',
+    };
+    
+    return <div style={divStyle}>Hello World!</div>;
+}
+```
+
+**Styling Component(실습)**
+
+### css
+
+```css
+/* Apps/Styling/Styling.css */
+.Styling {
+  font-family: Georgia, serif;
+  color: #555;
+}
+
+.Styling__content {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.Styling__content::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 4px;
+  border-top: 1px solid #ccc;
+  background: #eaeaea;
+  content: ''
+}
+
+.Styling__contentHead {
+  font-size: 14px;
+  color: #333;
+}
+```
+
+### scss
+
+**프로젝트에 Sass 적용**
+
+리액트 프로젝트 CRA 환경에서 Sass를 사용하려면 v2 기준 node-sass를 설치해야 한다.
+
+```bash
+npm i node-sass --save-dev
+```
+
+- sass-loader: compiles Sass to CSS, using node-sass by default
+- css-loader: translate CSS into CommonJS
+- style-loader: creates style nodes from JS strings
+
+```scss
+/* Apps/Styling/Styling.scss */
+$font-family: Georgia, serif;
+$primary-text-color: #555;
+$heading-text-color: #333;
+
+.Styling {
+  font-family: $font-family;
+  color: $primary-text-color;
+
+  &__content {
+    position: relative;
+    padding-bottom: 4px;
+  }
+
+  &__content::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 4px;
+    border-top: 1px solid #ccc;
+    background: #eaeaea;
+    content: '';
+  }
+
+  &__contentHead {
+    font-size: 14px;
+    color: $heading-text-color;
+  } 
+}
+```
+
+**StylingScss 컴포넌트 추가**
+
+```scss
+/* Apps/Styling/components/StylingScss.scss */
+$red: red;
+$orange: orange;
+$yellow: yellow;
+$green: green;
+$blue: blue;
+$navy: navy;
+$purple: purple;
+
+@mixin square($size) {
+  $calculated: 15px * $size;
+  width: $calculated;
+  height: $calculated;
+}
+
+.StylingScss {
+  display: flex;
+  .box {
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    &.red {
+      background: $red;
+      @include square(1);
+    }
+    &.orange {
+      background: $orange;
+      @include square(2);
+    }
+    &.yellow {
+      background: $yellow;
+      @include square(3);
+    }
+    &.green {
+      background: $green;
+      @include square(4);
+    }
+    &.blue {
+      background: $blue;
+      @include square(5);
+    }
+    &.navy {
+      background: $navy;
+      @include square(6);
+    }
+    &.purple {
+      background: $purple;
+      @include square(7);
+    }
+    &:hover {
+      background: black;
+    }
+  }
+}
+```
+
+**utils.scss 분리**
+
+### CSS module
+
+CSS module은 css를 불러올 때 [파일이름]_[클래스이름]__[해쉬] 형태로 클래스네임을 자동으로 고유한 값으로 만들어준다. CRA v2에서 [파일이름].module.css 로 파일을 저장하면 사용할 수 있다.
+
+**CssModule 컴포넌트(실습)**
+
+```scss
+/* Apps/Styling/components/CssModule.module.css */
+.box {
+  width: 40px;
+  height: 40px;
+  background: gold
+}
+
+.desc {
+  text-decoration: underline;
+  color: gray;
+}
+
+.emp {
+  font-weight: bold;
+}
+
+.highlight {
+  text-transform: uppercase;
+  color: gold;
+}
+
+:global .box {
+  border: 1px solid #000;
+}
+```
+
+**classNames 라이브러리**
+
+```bash
+npm i classnames --save
+```
+
+```js
+classNames('foo', 'bar'); // => 'foo bar'
+classNames('foo', { bar: true }); // => 'foo bar'
+classNames('foo', { bar: true, duck: false }, 'baz', { quux: true }); // => 'foo bar baz quux'
+classNames(null, false, 'bar', undefined, 0, 1, { baz: null }, ''); // => 'bar 1'
+```
+
+```js
+import classNames from 'classnames/bind';
+
+const styles = {
+  foo: 'abc',
+  bar: 'def',
+  baz: 'xyz'
+};
+
+const cx = classNames.bind(styles);
+
+const className = cx('foo', ['bar'], { baz: true }); // => "abc def xyz"
+```
+
+**classNames 라이브러리 적용**

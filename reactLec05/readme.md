@@ -148,6 +148,7 @@ const todoItems = todos.map((todo, index) => (
 - 제어 컴포넌트
 
 **NameForm Component(실습) - 비제어**
+
 **NameForm Component(실습) - 제어**
 
 - 여러 Input 제어하기

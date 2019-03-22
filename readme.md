@@ -14,7 +14,7 @@
     - 리스트와 키
     - 폼
 6. [React JS 기초 4](./reactLec06/readme.md)
+    - state 끌어올리기
     - ref: DOM 참조하기
-    - React스럽게 생각하기
     - 컴포넌트 스타일링
 7. TodoList 만들기
