@@ -47,8 +47,17 @@ npm un -D react react-dom babel-core
 
 ### creat-react-app 설치
 
+npx는 npm 패키지가 로컬에 없으면 npm 레지스트리에서 해당 패키지를 자동으로 설치하고 일회성으로 명령을 실행할 수 있게 해준다. npm 5.2.0 버전 이후부터 기본으로 제공된다.
+
+```bash
+npx create-react-app std_react_playground
+```
+
+npx가 실행이 안되는 구버전이면 create-react-app을 직접 설치한다.
+
 ```bash
 npm i create-react-app -g
+create-react-app std_react_playground
 ```
 
 *****
