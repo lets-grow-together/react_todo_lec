@@ -17,4 +17,11 @@
     - state 끌어올리기
     - ref: DOM 참조하기
     - 컴포넌트 스타일링
-7. TodoList 만들기
+7. [(Todo 만들기) 프로젝트 생성 및 레이아웃](./reactLec07/readme.md)
+8. [(Todo 만들기) 기능 추가](./reactLec08/readme.md)
+    - change / insert
+    - remove
+    - toggle
+    - toggleAll
+    - editStart/editSave/editCancel
+    - changeFilter/clearCompleted
