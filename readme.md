@@ -25,3 +25,6 @@
     - toggleAll
     - editStart/editSave/editCancel
     - changeFilter/clearCompleted
+9. [(Todo 만들기) (Todo 만들기) rerendering 최적화, router](./reactLec09/readme.md)
+    - rerendering 최적화
+    - router
