@@ -36,7 +36,13 @@ npm i classnames --save
 npm i node-sass open-color --save-dev
 ```
 
-src/styles 폴더에 utils.scss 파일과 lib/_all.scss 파일을 만들고 open-color 라이브러리와 유틸리티들을 불러온다.
+src/styles 폴더에 
+
+- utils.scss
+- lib/_all.scss 
+- lib/_mixin.scss
+
+파일을 만들고 유틸리티들과 open-color 라이브러리를 불러온다.
 
 ```scss
 // src/styles/utils.scss
@@ -61,7 +67,7 @@ src/styles 폴더에 utils.scss 파일과 lib/_all.scss 파일을 만들고 open
 ```
 
 ```scss
-// src/styles/lib/mixins.scss
+// src/styles/lib/_mixins.scss
 // source: https://codepen.io/dbox/pen/RawBEW
 @mixin material-shadow($z-depth: 1, $strength: 1, $color: black) {
   @if $z-depth == 1 {
@@ -139,7 +145,11 @@ button {
 
 index.js 파일에서 스타일을 불러온다. 나중에 만들 components/App.js 파일도 불러오도록 한다.
 
+**src/index.js** 수정
+
 ### App 컴포넌트 생성 후 webpack 개발 서버 시작
+
+**src/components/App.js** 작성
 
 ```shell
 npm run start
@@ -173,6 +183,8 @@ git commit -m 'project start'
 
 src/components 폴더에 PageTemplate 폴더를 만들고. PageTemplate.js 파일을 생성하여 컴포넌트의 JS를 작성한다.
 
+**src/components/PageTemplate/PageTemplate.js** 작성
+
 컴포넌트를 스타일링 한다.
 
 ```scss
@@ -191,7 +203,11 @@ src/components 폴더에 PageTemplate 폴더를 만들고. PageTemplate.js 파�
 
 컴포넌트 인덱스 파일을 만든다.
 
+**src/components/PageTemplate/index.js** 작성
+
 PageTemplate 컴포넌트를 App 컴포넌트에서 렌더링 한다.
+
+**src/components/App.js** 수정
 
 **webpack sass-loader 설정 커스터마이징**
 
@@ -225,7 +241,9 @@ sytles 파일 path 설정하기
 
 ### Header 컴포넌트 생성
 
-**Header.module.scss 생성**
+**src/component/Header/Header.js** 생성
+
+**Header.module.scss** 생성
 
 ```scss
 // src/component/Header/Header.module.scss
@@ -307,9 +325,9 @@ header {
 }
 ```
 
-**index.js 생성**
-
 ### TodoList 컴포넌트 생성
+
+**src/components/TodoList/TodoList.js** 생성
 
 ```scss
 // src/components/TodoList/TodoList.module.scss
@@ -322,11 +340,11 @@ header {
 }
 ```
 
-**index.js 생성**
-
 ### TodoItem 컴포넌트 생성
 
-**TodoItem.module.scss 생성**
+**src/components/TodoItem/TodoItem.js** 생성
+
+**TodoItem.module.scss** 생성
 
 ```scss
 // src/components/TodoItem/TodoItem.module.scss
@@ -439,13 +457,14 @@ header {
 }
 ```
 
-**index.js 생성**
-
 ### Footer 컴포넌트 생성
 
-**Footer.module.scss 생성**
+**src/components/Footer/Footer.js** 생성
+
+**Footer.module.scss** 생성
 
 ```scss
+// src/components/Footer/Footer.module.scss
 @import 'utils';
 
 footer {
@@ -522,8 +541,6 @@ footer {
   }
 }
 ```
-
-**index.js 생성**
 
 ### state 추가
 
