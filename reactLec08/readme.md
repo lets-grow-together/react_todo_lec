@@ -31,7 +31,7 @@ git commit -m 'add toggle'
 
 ### toggleAll
 
-- handleToggle 메서드 추가
+- handleToggleAll 메서드 추가
 - isAllDone prop 추가
 - handleToggleAll / onToggleAll 연결
 

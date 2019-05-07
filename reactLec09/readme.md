@@ -252,3 +252,24 @@ export default withRouter(Menu);
 ```
 
 withRouter를 사용한 컴포넌트에서 match 값은 현재 해당 컴포넌트가 위치한 상위 라우트의 정보이다. withRouter는 주로 history에 접근하여 컴포넌트에서 라우터를 조작하는 데 사용한다.
+
+*****
+
+### TodoList filter에 라우터 적용
+
+**react-router** 설치
+
+```shell
+npm i react-router-dom --save
+```
+
+**Root.js**: 생성
+
+- 라우터 추가
+- Root.js/App.js 렌더링 교체
+
+**App.js**: filterName 값 params에서 가져오기
+
+- state에서 filterName 삭제
+- match.params 객체에서 filterName 파라미터 가져오기
+- Footer 컴포넌트에 전달
