@@ -25,6 +25,9 @@
     - toggleAll
     - editStart/editSave/editCancel
     - changeFilter/clearCompleted
-9. [(Todo 만들기) (Todo 만들기) rerendering 최적화, router](./reactLec09/readme.md)
+9. [(Todo 만들기) rerendering 최적화, router](./reactLec09/readme.md)
     - rerendering 최적화
     - router
+10. [(Todo 만들기) ajax, immutable](./reactLec10/readme.md)
+    - firebase, axios, 웹 요청 처리
+    - immer.js를 이용한 불변성 관리
