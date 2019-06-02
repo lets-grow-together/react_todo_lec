@@ -31,3 +31,5 @@
 10. [(Todo 만들기) ajax, immutable](./reactLec10/readme.md)
     - firebase, axios, 웹 요청 처리
     - immer.js를 이용한 불변성 관리
+11. [(Todo 만들기) redux](./reactLec11/readme.md)
+    - redux
