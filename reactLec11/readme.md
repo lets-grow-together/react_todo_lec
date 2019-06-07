@@ -4,8 +4,8 @@
 
 리덕스는 리액트에서 상태를 더 효율적으로 관리하는 데 사용하는 상태관리 라이브러리이다. 리덕스는 리액트에서 상태관리를 위해 만든 상태 관리 라이브러리이지만, 리액트에 의존하지는 않는다.
 
-[Redux · A Predictable State Container for JS Apps](https://redux.js.org/)
-[React Redux · Official React bindings for Redux](https://react-redux.js.org/)
+- [Redux · A Predictable State Container for JS Apps](https://redux.js.org/)
+- [React Redux · Official React bindings for Redux](https://react-redux.js.org/)
 
 *****
 

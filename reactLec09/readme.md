@@ -271,5 +271,6 @@ npm i react-router-dom --save
 **App.js**: filterName 값 params에서 가져오기
 
 - state에서 filterName 삭제
+- handleFilterChange 제거
 - match.params 객체에서 filterName 파라미터 가져오기
 - Footer 컴포넌트에 전달
