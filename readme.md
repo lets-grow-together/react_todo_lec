@@ -33,3 +33,8 @@
     - immer.js를 이용한 불변성 관리
 11. [(Todo 만들기) redux](./reactLec11/readme.md)
     - redux
+12. [(Todo 만들기) redux middleware](./reactLec12/readme.md)
+    - redux middleware
+    - reduxThunk
+    - reduxPender
+13. [(Todo 만들기) redux middleware 적용](./reactLec13/readme.md)
