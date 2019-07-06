@@ -37,4 +37,4 @@
     - redux middleware
     - reduxThunk
     - reduxPender
-13. [(Todo 만들기) redux middleware 적용](./reactLec13/readme.md)
+13. [(Todo 만들기) Todolist redux 적용](./reactLec13/readme.md)
