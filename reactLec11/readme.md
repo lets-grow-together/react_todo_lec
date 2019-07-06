@@ -102,12 +102,14 @@ TodoList에 사용한 컴포넌트는 개수가 많지 않기 때문에 App에�
 
 프리젠테이셔널 컴포넌트와 컨테이너 컴포넌트로 나누어 컴포넌트를 작성하면, 사용자가 이용할 유저 인터페이스와 상태를 다루는 데이터가 분리되어 프로젝트를 이행하기 쉽고, 컴포넌트 재사용률이 높아진다.
 
-| | Presentational Component | Container 컴포넌트 |
+| | Presentational Component | Container Component |
 | ---- | ---- | ---- |
 | 목적 | 어떻게 보여질 지(마크업, 스타일) | 어떻게 동작할 지(데이터 불러오기, 상태 변경하기) |
 | Redux와 연관 | 아니오 | 예 |
 | 데이터를 읽을 때 | props에서 데이터를 읽음 | Redux 상태 구독 |
 | 데이터를 변경할 때 | props에서 콜백 호출 | Reudx 액션을 보냄 |
+
+![react-redux-overview](./react-redux-overview.png)
 
 *****
 
