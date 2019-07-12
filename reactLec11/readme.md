@@ -12,12 +12,12 @@
 리덕스는 효율적으로 상태 관리를 할 수 있는 라이브러리이다. 스토어에 상태 정보를 가진 객체를 넣어 두고, 액션이 디스패치되었을 때 리듀서 함수를 이용하여 상태를 변화시키고 상태가 변화될 때마다 스토어에 구독된 함수를 실행시키는 것이 주요 역할이다.
 
 - 리덕스는 **상태 관리**의 로직을 컴포넌트 밖에서 처리한다.
-- 리덕스를 사용하면 **스토어(store)**라는 객체 내부에 상태를 저장하고, 이 스토어에서 모든 상태 관리가 일어난다.
+- 리덕스를 사용하면 **스토어(store)** 라는 객체 내부에 상태를 저장하고, 이 스토어에서 모든 상태 관리가 일어난다.
 - 리덕스 스토어에 연결하는 함수를 사용하여 컴포넌트를 스토어에 **구독**시킨다.
 - 상태에 어떤 변화를 일으켜야 할 때는 **액션(action)을 스토어에 전달**한다.
 - 액션은 객체 형태로 되어 있으며, 상태를 변화시킬 때 이 객체를 참조하여 변화를 일으킨다.
-- 액션을 전달하는 과정을 **디스패치(dispatch)**라고 한다.
-- 스토어가 액션을 받으면 **리듀서(reducer)**가 전달받은 액션을 기반으로 상태를 어떻게 변경시켜야할지 정한다. 
+- 액션을 전달하는 과정을 **디스패치(dispatch)** 라고 한다.
+- 스토어가 액션을 받으면 **리듀서(reducer)** 가 전달받은 액션을 기반으로 상태를 어떻게 변경시켜야할지 정한다. 
 - 액션을 처리하면 새 상태를 스토어에 저장한다.
 - 스토어 안에 있는 상태가 바뀌면 스토어를 구독하고 있는 컴포넌트에 바로 전달한다.
 
@@ -92,7 +92,7 @@ TodoList에 사용한 컴포넌트는 개수가 많지 않기 때문에 App에�
 
 ### 프리젠테이셔널 컴포넌트
 
-프리젠테이셔널 컴포넌트는 뷰만 담당한다. 안에 DOM 엘리먼트와 스타일이 있으며, 프리젠테이셔널 컴포넌트나 컨테이너 컴포너넌트가 있을 수도 있다. 직접 리덕스 스토어에 접근하지 않으면, 오직 props로 데이터를 받는다. 또 대부분 state가 없거나 UI와 관련된 state만 있다.
+프리젠테이셔널 컴포넌트는 뷰만 담당한다. 안에 DOM 엘리먼트와 스타일이 있으며, 프리젠테이셔널 컴포넌트나 컨테이너 컴포넌트가 있을 수도 있다. 직접 리덕스 스토어에 접근하지 않으면, 오직 props로 데이터를 받는다. 또 대부분 state가 없거나 UI와 관련된 state만 있다.
 
 주로 함수형 컴포넌트로 작성하며, state가 있어야 하거나 최적화를 위해 라이프사이클 메서드가 필요할 때는 클래스형 컴포넌트로 작성한다.
 
@@ -122,7 +122,7 @@ TodoList에 사용한 컴포넌트는 개수가 많지 않기 때문에 App에�
 - 스토어 생성
     + 현재 상태가 저장되어 있고, 상태를 업데이트할 때마다 구독 중인 함수들을 호출한다.
 - Provider 컴포넌트로 리액트 앱에 store 연동
-- CounterContainer 컴포넌트 생성
+- CounterContainer 컴포넌트 수정
     + 컨테이너 컴포넌트는 스토어와 연동시킨다.
     + connect 함수를 사용하여 컴포넌트를 스토어에 연결시킨다.
         - mapStateToProps: `store.getState()` 결과 값인 state를 파라미터로 받아 컴포넌트의 props로 사용할 객체를 반환한다.
@@ -144,7 +144,52 @@ TodoList에 사용한 컴포넌트는 개수가 많지 않기 때문에 App에�
 - 액션 생성함수 수정
 - 리듀서 수정
 - Buttons 컴포넌트 생성
+
+```css
+// src/components/Buttons.css
+.Buttons {
+  display: flex;
+}
+
+.Buttons .btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.Buttons .add {
+  background: #37b24d;
+}
+
+.Buttons .add:hover {
+  background: #40c057;
+}
+
+.Buttons .remove {
+  background: #f03e3e;
+}
+
+.Buttons .remove:hover {
+  background: #fa5252;
+}
+```
+
 - CounterList 컴포넌트 생성
+
+```css
+// src/components/CounterList.css
+.CounterList {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+```
+
 - Counter 컴포넌트 수정
 - CounterContainer 컴포넌트 제거, ConterListContainer 컴포넌트 생성
 - App 컴포넌트 리덕스에 연결
