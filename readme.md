@@ -36,5 +36,5 @@
 12. [(Todo 만들기) redux middleware](./reactLec12/readme.md)
     - redux middleware
     - reduxThunk
-    - reduxPender
+    - reduxPromiseMiddleware
 13. [(Todo 만들기) Todolist redux 적용](./reactLec13/readme.md)

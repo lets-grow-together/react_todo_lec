@@ -6,9 +6,11 @@
 npm i redux-thunk --save
 ```
 
+- store.js 생성
+- Provider로 앱에 store 연결
 - input 모듈 작성
 - 리듀서 내보내기
-- modules/containers 폴더 생성, AppContainer 컴포넌트 생성
+- containers 폴더 생성, AppContainer 컴포넌트 생성
 - App 컴포넌트 수정
 - todos 모듈 작성
 - insertTodo, clearInput 액션 생성자 추가
@@ -105,4 +107,4 @@ npm i redux-promise-middleware --save
 ```
 
 - store에 redux-promise-middleware 적용
-- module 코드 수정
+- todos module 코드 수정
