@@ -344,8 +344,13 @@ const reducer = handleActions({
 ### CounterReduxApp4(실습)
 
 - Ducks 구조 적용
-- redux-actions 사용
-- index.js modules 불러오기
+- redux-actions 설치
+
+```shell
+npm i redux-actions --save
+```
+
 - counters.js 모듈 작성
+- index.js modules 불러오기
 - 각 컨테이너에 bindActionCreators로 액션 생성함수 연결
 - 각 컨포넌트에 액션 생성함수명 변경
