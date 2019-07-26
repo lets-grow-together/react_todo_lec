@@ -2,6 +2,10 @@
 
 ## redux / redux-thunk
 
+```shell
+npm i redux-thunk --save
+```
+
 - input 모듈 작성
 - 리듀서 내보내기
 - modules/containers 폴더 생성, AppContainer 컴포넌트 생성
@@ -91,3 +95,14 @@
 ```
 
 - redux-thunk 브랜치 달기
+
+*****
+
+## redux / redux-promise-middleware
+
+```shell
+npm i redux-promise-middleware --save
+```
+
+- store에 redux-promise-middleware 적용
+- module 코드 수정
