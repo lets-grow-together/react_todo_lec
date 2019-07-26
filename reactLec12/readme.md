@@ -69,14 +69,13 @@ npm i axios --save
 
 *****
 
-### CounterReduxPender(실습)
+### CounterReduxPromiseMiddleware(실습)
+
+redux-promise-middleware는 Promise 기반의 비동기 작업을 좀 더 편하게 해 주는 미들웨어이다. 이 미들웨어는 Promise 객체를 payload로 전달하여 요청을 시작, 성공, 실패할 때 액션의 뒷부분에 `_PENDING`, `_FULFILLED`, `_REJECTED`를 붙여서 반환한다. 
 
 ```shell
-npm i redux-pender --save
+npm i redux-promise-middleware --save
 ```
 
-- store에 redux-pender 미들웨어 적용
-- pender 리듀서 추가
-- post.js 모듈 수정
-    + redux-pender를 적용하면 액션 생성 함수와 리듀서의 액션 처리 관련 코드들을 간소화할 수 있다.
-- App.js 컴포넌트 수정
+- store에 redux-promise-middleware 적용
+- post 모듈 액션 생성자 수정
