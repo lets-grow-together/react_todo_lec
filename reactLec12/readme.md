@@ -42,7 +42,7 @@ npm i redux-logger --save
     + Counter.js 삭제
     + Buttons.js 삭제
     + getRandomColor.js 삭제
-    + App.js 수정
+    + counter 모듈 / App.js 수정
 
 *****
 
