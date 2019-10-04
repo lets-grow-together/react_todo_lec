@@ -1,6 +1,6 @@
 # 02 ECMA Script 2015(ES6) 기초
 
-- 블록 바인딩
+- 블록 스코프
   + let / const
 - Template literals
 - Function
@@ -19,7 +19,7 @@
 
 *****
 
-## 블록 바인딩
+## 블록 스코프
 
 - ECMAScript 6에서는 변수 생명 주기를 개발자가 더 잘 제어하도록 하기 위해 블록 레벨 스코프 옵션이 도입되었다.
 - 기존의 함수에 의한 스코프처럼 `{ }`으로 감싼 내부에 별도의 스코프가 생성된다.
@@ -126,7 +126,7 @@ const maxItems = 5;
 maxItems = 6;       // 에러 발생
 ```
 
-다른 언어의 상수와 마찬가지로 이미 선언한 maxItems 변수에는 새로운 값을 할당할 수 없다. 그러나 다른 언어와 달리 **상수로 선언한 값이 객체라면, 상수 객체가 소유한 값을 수정할 수 있다. **
+다른 언어의 상수와 마찬가지로 이미 선언한 maxItems 변수에는 새로운 값을 할당할 수 없다. 그러나 다른 언어와 달리 **상수로 선언한 값이 객체라면, 상수 객체가 소유한 값을 수정할 수 있다.**
 
 ### const로 객체 선언하기
 
@@ -172,7 +172,7 @@ console.log(i);
 
 ### 블록 바인딩을 위한 모범 사례
 
-`const`를 기본으로 사용하고 변수 값을 변경해야 할 때만 `let`을 사용한다. 예상치 못한 값 변경은 버그의 원인이 될 수 있기 때문에, 변수는 초기화 후에 대부분 그 값을 변경해서는 안된다.
+**`const`를 기본으로 사용하고 변수 값을 변경해야 할 때만 `let`을 사용한다.** 예상치 못한 값 변경은 버그의 원인이 될 수 있기 때문에, 변수는 초기화 후에 대부분 그 값을 변경해서는 안된다.
 
 *****
 
@@ -194,8 +194,9 @@ ECMAScript 6의 템플릿 리터럴은 특별한 문법 없이 멀티라인 문�
 let message = `Multiline
 string`;
 
-console.log(message);
-console.log(message.length);
+console.log(message);   // Multiline
+                        // string
+console.log(message.length);    // 16
 ```
 
 ### 치환자 만들기
@@ -227,8 +228,8 @@ console.log(message);       // '10 items cost $2.50.'
 // ES5
 function makeRequest(url, timeout, callback) {
     // timeout = timeout || 2000;
-    timeout = (typeof timeout !== 'undefined' ? timeout : 2000;
-    callback = (typeof callback !== 'undefined' ? callback : function () {};
+    timeout = (typeof timeout !== 'undefined') ? timeout : 2000;
+    callback = (typeof callback !== 'undefined') ? callback : function () {};
     
     // 함수의 나머지 부분
 }
@@ -246,10 +247,10 @@ function makeRequest(url, timeout = 2000, callback = function () {}) {
 ```js
 function func(arg) {
     const restArgs = Array.prototype.slice.call(arguments, 1);
-    
-    console.log(arg)
+    console.log(arg);   // 1
+
     if (restArgs.length) {
-      console.log(restArgs);
+      console.log(restArgs);    // [2, 3]
     }
 }
 
@@ -258,9 +259,10 @@ func(1, 2, 3);
 
 ```js
 function func(arg, ...restArgs) {
-    console.log(arg);
+    console.log(arg);   // 1
+
     if (restArgs.length) {
-      console.log(restArgs);
+      console.log(restArgs);    // [2, 3]
     }
 }
 
@@ -327,8 +329,8 @@ const copied = [...origin];
 // const [...copied] = origin
 
 origin.push(3);
-console.log(origin);
-console.log(copied);
+console.log(origin);    // [1, 2, 3]
+console.log(copied);    // [1, 2]
 ```
 
 ```js
@@ -337,15 +339,16 @@ const copied = { ...origin };
 //const {...copied} = origin;
 
 origin.a = 'aaaa';
-console.log(origin);
-console.log(copied);
+console.log(origin);    // { a: 'aaaa', b: 'bb' }
+console.log(copied);    // { a: 'aa', b: 'bb' }
 ```
 
 ```js
 // Object.assign(ES6)
 const origin = { a: 'aa', b: 'bb' };
+const nextOrigin = { ...origin, ...{ a: 'aaaa' } };
 //const nextOrigin = Object.assign({}, origin, { a: 'aaaa' });
-const nextOrigin = { ...origin, { a: 'aaaa' } };
+console.log(nextOrigin);    // { a: 'aaaa', b: 'bb' }
 ```
 
 *****
@@ -355,10 +358,10 @@ const nextOrigin = { ...origin, { a: 'aaaa' } };
 화살표 함수는 중요한 몇 가지 부분에서 기존의 자바스크립트 함수와 다르게 동작한다.
 
 - `this`와 `arguments` 바인딩: 함수 내에서 `this`와 `arguments`의 값은 그 화살표 함수를 가장 근접하게 둘러싸고 있는 일반함수에 의해 정의된다.
-- `new`를 사용할 수 없음: 화살표 함수는 `[[Construct]]` 메서드가 없으므로 생성자로 사용될 수 없다. 화살표 함수는 `new`와 함께 사용하면 에러를 발생시킨다.
-- 프로토타입이 없음: 화살표 함수에 `new`를 사용할 수 없기 때문에 프로토타입이 필요없다. 화살표 함수에는 `prototype` 프로퍼티가 없다.
-- `this`를 변경할 수 없음: 함수 내부의 `this`는 변경할 수 없다. 함수의 전체 생명주기 내내 같은 값으로 유지된다.
-- `arguments` 객체 없음: 화살표 함수는 `arguments` 바인딩이 없기 때문에 함수 인자에 접근하기 위해서는 명시한 매개변수와 나머지 매개변수에 의존해야 한다.
+- **`new`를 사용할 수 없음**: 화살표 함수는 `[[Construct]]` 메서드가 없으므로 생성자로 사용될 수 없다. 화살표 함수는 `new`와 함께 사용하면 에러를 발생시킨다.
+- **프로토타입이 없음**: 화살표 함수에 `new`를 사용할 수 없기 때문에 프로토타입이 필요없다. 화살표 함수에는 `prototype` 프로퍼티가 없다.
+- **`this`를 변경할 수 없음**: 함수 내부의 `this`는 변경할 수 없다. 함수의 전체 생명주기 내내 같은 값으로 유지된다.
+- **`arguments` 객체 없음**: 화살표 함수는 `arguments` 바인딩이 없기 때문에 함수 인자에 접근하기 위해서는 명시한 매개변수와 나머지 매개변수에 의존해야 한다.
 
 ### 화살표 함수 문법
 
